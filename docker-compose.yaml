@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+    gogrepoc:
+        image: leberschnitzel/gogrepocdock:latest
+        volumes:
+            - ./Downloads:/gogrepocdock/downloads #first path should be the folder where you want the downloads to end up
+        environment:
+            - goguser= #your GOG Username goes here
+            - gogpassword= #Your GOG Password goes here
+            - updatecommands=-os windows linux -lang en #configure as you like
+            - downloadcommands=-dryrun #remove -dryrun once you are sure you want to download.
