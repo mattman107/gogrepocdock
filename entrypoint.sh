@@ -22,9 +22,9 @@ esac
 # Function to execute the commands
 execute_commands() {
   # Run the login command
-  python gogrepoc.py login "$goguser" "$gogpassword"
-  python gogrepoc.py update "$updatecommands"
-  python gogrepoc.py download "$downloadcommands" /gogrepocdock/downloads
+  python gogrepoc.py login $goguser $gogpassword
+  python gogrepoc.py update $updatecommands
+  python gogrepoc.py download $downloadcommands /gogrepocdock/downloads
 }
 
 # Initial command execution
