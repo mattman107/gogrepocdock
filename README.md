@@ -16,8 +16,8 @@ This repository provides a Docker setup for synchronizing GOG games using the `g
    Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/gog-repo-sync.git
-   cd gog-repo-sync
+   git clone https://github.com/leberschnitzel/gogrepocdock.git
+   cd gogrepocdock
    ```
 
 2. **Configure Docker Compose**
