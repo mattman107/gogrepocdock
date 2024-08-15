@@ -3,10 +3,10 @@ services:
     gogrepoc:
         image: leberschnitzel/gogrepocdock:latest
         volumes:
-            - ./Downloads:/gogrepocdock/downloads #first path should be the folder where you want the downloads to end up
+            - ./Downloads:/gogrepocdock/downloads
         environment:
-            - goguser= #your GOG Username goes here. Required.
-            - gogpassword= #Your GOG Password goes here. Required.
-            - updatecommands=-os windows linux -lang en #configure as you like. Configure here, not in downloadcommands (I'm working on it).
-            - downloadcommands=-dryrun #remove -dryrun once you are sure you want to download.
-            - repeat=1w #Repeats the sync every day (d) or week (w). Standard: 1w
+            - goguser=your_gog_username #Your GOG Username (required).
+            - gogpassword=your_gog_password #Your GOG Password (required).
+            - updatecommands=-os windows linux -lang en #Configuration for update commands. See https://github.com/Kalanyr/gogrepoc for information (required).
+            - downloadcommands=-dryrun #Configuration for download commands (optional). Remove -dryrun when you're ready to start actual downloads (optional).
+            - repeat=1w #Interval for syncing. Use formats like 1w for 1 week or 3d for 3 days Default is 1w (optional)
