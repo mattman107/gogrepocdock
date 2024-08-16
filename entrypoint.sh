@@ -49,6 +49,17 @@ while true; do
 
   # Ensure that sleep_time is non-negative
   if [ $sleep_time -gt 0 ]; then
-    sleep $sleep_time
+    # Echo the remaining time every minute
+    while [ $sleep_time -gt 0 ]; do
+      # Sleep for one minute or the remaining time if less than a minute
+      sleep $((sleep_time > 60 ? 60 : sleep_time))
+      sleep_time=$((sleep_time - 60))
+
+      # Check if sleep_time is still positive after decrementing
+      if [ $sleep_time -gt 0 ]; then
+        echo "$sleep_time seconds until next sync."
+      fi
+    done
   fi
 done
+
