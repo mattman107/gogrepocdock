@@ -55,9 +55,19 @@ while true; do
       sleep $((sleep_time > 60 ? 60 : sleep_time))
       sleep_time=$((sleep_time - 60))
 
-      # Check if sleep_time is still positive after decrementing
-      if [ $sleep_time -gt 0 ]; then
-        echo "$sleep_time seconds until next sync."
+      days=$((sleep_time / 86400))
+      hours=$((sleep_time % 86400 / 3600))
+      minutes=$((sleep_time % 3600 / 60))
+      seconds=$((sleep_time % 60))
+
+      if [ $days -gt 0 ]; then
+        echo "$days days, $hours hours, $minutes minutes, and $seconds seconds until next sync."
+      elif [ $hours -gt 0 ]; then
+        echo "$hours hours, $minutes minutes, and $seconds seconds until next sync."
+      elif [ $minutes -gt 0 ]; then
+        echo "$minutes minutes and $seconds seconds until next sync."
+      else
+        echo "$seconds seconds until next sync."
       fi
     done
   fi
