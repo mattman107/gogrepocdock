@@ -49,11 +49,20 @@ while true; do
 
   # Ensure that sleep_time is non-negative
   if [ $sleep_time -gt 0 ]; then
-    # Echo the remaining time every minute
+    # Determine the echo interval based on the total sleep time
+    if [ $sleep_time -gt 604800 ]; then
+      echo_interval=86400  # Echo every day if sleep_time > 1 week
+    elif [ $sleep_time -gt 86400 ]; then
+      echo_interval=3600   # Echo every hour if sleep_time > 1 day and <= 1 week
+    else
+      echo_interval=60      # Echo every second if sleep_time <= 1 hour
+    fi
+
+    # Echo the remaining time at the defined interval
     while [ $sleep_time -gt 0 ]; do
-      # Sleep for one minute or the remaining time if less than a minute
-      sleep $((sleep_time > 60 ? 60 : sleep_time))
-      sleep_time=$((sleep_time - 60))
+      # Sleep for the defined interval or the remaining time if less than the interval
+      sleep_time=$((sleep_time - echo_interval))
+      [ $sleep_time -lt 0 ] && sleep_time=0
 
       days=$((sleep_time / 86400))
       hours=$((sleep_time % 86400 / 3600))
@@ -61,14 +70,15 @@ while true; do
       seconds=$((sleep_time % 60))
 
       if [ $days -gt 0 ]; then
-        echo "$days days, $hours hours, $minutes minutes, and $seconds seconds until next sync."
+        echo "$days days until next sync."
       elif [ $hours -gt 0 ]; then
-        echo "$hours hours, $minutes minutes, and $seconds seconds until next sync."
-      elif [ $minutes -gt 0 ]; then
-        echo "$minutes minutes and $seconds seconds until next sync."
+        echo "$hours hours until next sync."
       else
-        echo "$seconds seconds until next sync."
+        echo "$minutes minutes until next sync."
       fi
+
+      # Sleep for the echo interval or remaining time if less
+      [ $sleep_time -gt 0 ] && sleep $((sleep_time > echo_interval ? echo_interval : sleep_time))
     done
   fi
 done
