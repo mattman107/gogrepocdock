@@ -52,10 +52,12 @@ while true; do
     # Determine the echo interval based on the total sleep time
     if [ $sleep_time -gt 604800 ]; then
       echo_interval=86400  # Echo every day if sleep_time > 1 week
-    elif [ $sleep_time -gt 86400 ]; then
+    elif [ $sleep_time -gt 43200 ]; then
       echo_interval=3600   # Echo every hour if sleep_time > 1 day and <= 1 week
+    elif [ $sleep_time -gt 3600 ]; then
+      echo_interval=1200   # Echo every hour if sleep_time > 1 day and <= 1 week    
     else
-      echo_interval=60      # Echo every second if sleep_time <= 1 hour
+      echo_interval=60      # Echo every minute if sleep_time <= 1 hour
     fi
 
     # Echo the remaining time at the defined interval
