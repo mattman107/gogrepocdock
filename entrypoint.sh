@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Pull the latest version of the gogrepoc.py file
-wget https://raw.githubusercontent.com/Kalanyr/gogrepoc/refs/heads/master/gogrepoc.py
+# Pull the latest version of the gogrepoc.py file if we need
+wget -N https://raw.githubusercontent.com/Kalanyr/gogrepoc/refs/heads/master/gogrepoc.py
 
 # Check if logindata is provided
 if [ -z "$goguser" ] || [ -z "$gogpassword" ]; then
