@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Pull the latest version of the gogrepoc.py file
+wget https://raw.githubusercontent.com/Kalanyr/gogrepoc/refs/heads/master/gogrepoc.py
+
 # Check if logindata is provided
 if [ -z "$goguser" ] || [ -z "$gogpassword" ]; then
   echo "Error: logindata is not provided"
