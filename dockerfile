@@ -1,5 +1,5 @@
 # Use the base Python image
-FROM python:3.13-rc-alpine
+FROM python:3.13-alpine
 
 # Install necessary Python packages
 RUN pip install html5lib html2text requests pyOpenSSL
